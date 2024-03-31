@@ -1,3 +1,5 @@
+//An operator overloading allows custom behavior to be defined for built-in operators like addition (+), subtraction (-), when we used with user-defined types.
+// When overloading binary operators as frien functions, external functions can access private members of a class. Provide examples how binary operator overloading is implemented using friend functions.
 #include <iostream>
 
 using namespace std;
