@@ -1,15 +1,11 @@
 #include <iostream>
-#include <string>
 
-// Avoiding "using namespace std" to prevent namespace pollution
-
-class str_oper {
+class StringOperation {
 private:
-    std::string str; // Using std:: prefix to specify the namespace
+    std::string str;
 
 public:
-    // Constructor to initialize the string
-    str_oper(std::string s) : str(s) {}
+    StringOperation(std::string s) : str(s) {}
 
     // Function to find the length of the string
     int findLength() {
@@ -20,30 +16,26 @@ public:
         return length;
     }
 
-    // Function to reverse the string
-    std::string reverse() {
-        std::string reverseStr;
+    // Function to find the reverse of the string
+    std::string findReverse() {
+        std::string reversedStr;
         for (int i = str.length() - 1; i >= 0; i--) {
-            reverseStr.push_back(str[i]);
+            reversedStr += str[i];
         }
-        return reverseStr;
+        return reversedStr;
     }
 
-    // Function to concatenate the string with another string
-    std::string concatenateStrings(std::string other_String) {
-        std::string concatenatedStr = str;
-        for (char c : other_String) {
-            concatenatedStr.push_back(c);
-        }
-        return concatenatedStr;
+    // Function to find the concatenation of two strings
+    std::string concatenate(std::string otherStr) {
+        return str + otherStr;
     }
 
-    // Function to compare the string with another string
-    bool compareStrings(std::string other_String) {
-        if (str.length() != other_String.length())
+    // Function to compare two strings
+    bool compare(std::string otherStr) {
+        if (str.length() != otherStr.length())
             return false;
         for (int i = 0; i < str.length(); i++) {
-            if (str[i] != other_String[i])
+            if (str[i] != otherStr[i])
                 return false;
         }
         return true;
@@ -51,23 +43,18 @@ public:
 };
 
 int main() {
-    std::string userInput;
-    std::cout << "Enter a string: ";
-    std::getline(std::cin, userInput);
+    std::string inputString1, inputString2;
+    std::cout << "Enter the first string: ";
+    std::cin >> inputString1;
+    std::cout << "Enter the second string: ";
+    std::cin >> inputString2;
 
-    str_oper strOp(userInput);
-    std::cout << "Length of string: " << strOp.findLength() << std::endl;
-    std::cout << "Reverse of string: " << strOp.reverse() << std::endl;
-    
-    std::string otherString;
-    std::cout << "Enter another string for concatenation: ";
-    std::getline(std::cin, otherString);
-    std::cout << "Concatenated string: " << strOp.concatenateStrings(otherString) << std::endl;
+    StringOperation strOp(inputString1);
 
-    std::string compareString;
-    std::cout << "Enter a string for comparison: ";
-    std::getline(std::cin, compareString);
-    std::cout << "Comparison result: " << strOp.compareStrings(compareString) << std::endl;
+    std::cout << "Length of the string: " << strOp.findLength() << std::endl;
+    std::cout << "Reverse of the string: " << strOp.findReverse() << std::endl;
+    std::cout << "Concatenation of the two strings: " << strOp.concatenate(inputString2) << std::endl;
+    std::cout << "Comparison result of the two strings: " << (strOp.compare(inputString2) ? "Equal" : "Not Equal") << std::endl;
 
     return 0;
 }
